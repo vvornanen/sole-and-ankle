@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, WEIGHTS } from '../../constants';
+import {COLORS, WEIGHTS} from '../../constants';
 import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 
@@ -10,28 +10,49 @@ const Header = () => {
   // grouped semantically as a single header.
   return (
     <header>
-      <SuperHeader />
+      <SuperHeader/>
       <MainHeader>
-        <Logo />
-        <Nav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
-        </Nav>
+        <Baseline>
+          <NavSpacer>
+            <Logo/>
+          </NavSpacer>
+          <Nav>
+            <NavLink href="/sale">Sale</NavLink>
+            <NavLink href="/new">New&nbsp;Releases</NavLink>
+            <NavLink href="/men">Men</NavLink>
+            <NavLink href="/women">Women</NavLink>
+            <NavLink href="/kids">Kids</NavLink>
+            <NavLink href="/collections">Collections</NavLink>
+          </Nav>
+          <NavSpacer/>
+        </Baseline>
       </MainHeader>
     </header>
   );
 };
 
 const MainHeader = styled.div`
-  padding: 0 32px;
+  padding: 22px 32px;
   border-bottom: 1px solid ${COLORS.gray[300]};
 `;
 
-const Nav = styled.nav``;
+const Baseline = styled.div`
+  display: flex;
+  align-items: baseline;
+  gap: 48px;
+  margin-block-start: -2px; /* Optical alignment */
+`;
+
+const NavSpacer = styled.div`
+  flex: 1;
+`
+
+const Nav = styled.nav`
+  width: fit-content;
+  display: flex;
+  gap: 48px;
+  justify-content: space-between;
+`;
 
 const NavLink = styled.a`
   font-size: 1.125rem;
