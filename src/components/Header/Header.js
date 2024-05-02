@@ -32,7 +32,11 @@ const Header = () => {
 };
 
 const MainHeader = styled.div`
-  padding: 22px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: 32px;
+  height: ${72 / 16}rem;
   border-bottom: 1px solid ${COLORS.gray[300]};
 `;
 
