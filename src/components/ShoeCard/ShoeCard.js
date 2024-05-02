@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, WEIGHTS } from '../../constants';
-import { formatPrice, pluralize, isNewShoe } from '../../utils';
+import {COLORS, WEIGHTS} from '../../constants';
+import {formatPrice, pluralize, isNewShoe} from '../../utils';
 import Spacer from '../Spacer';
 
 const ShoeCard = ({
@@ -35,9 +35,9 @@ const ShoeCard = ({
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
-          <Image alt="" src={imageSrc} />
+          <Image alt="" src={imageSrc}/>
         </ImageWrapper>
-        <Spacer size={12} />
+        <Spacer size={12}/>
         <Row>
           <Name>{name}</Name>
           <Price>{formatPrice(price)}</Price>
@@ -45,6 +45,8 @@ const ShoeCard = ({
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
         </Row>
+        {variant === "new-release" && <NewReleaseFlag>Just released!</NewReleaseFlag>}
+        {variant === "on-sale" && <OnSaleFlag>Sale</OnSaleFlag>}
       </Wrapper>
     </Link>
   );
@@ -56,7 +58,9 @@ const Link = styled.a`
   flex: 1 1 250px;
 `;
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+  position: relative;
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -85,5 +89,26 @@ const SalePrice = styled.span`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.primary};
 `;
+
+const Flag = styled.div`
+  position: absolute;
+  top: 12px;
+  right: -4px;
+  border-radius: 2px;
+  font-size: ${14 / 16}rem;
+  font-weight: ${WEIGHTS.bold};
+  padding-block: 8px;
+  padding-inline: 12px;
+`
+
+const OnSaleFlag = styled(Flag)`
+  background-color: ${COLORS.primary};
+  color: ${COLORS.white};
+`
+
+const NewReleaseFlag = styled(Flag)`
+  background-color: ${COLORS.secondary};
+  color: ${COLORS.white};
+`
 
 export default ShoeCard;
